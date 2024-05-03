@@ -1,5 +1,5 @@
 export class Die {
-  roll(): number {
+  public roll(): number {
     return Math.floor(Math.random() * 6) + 1;
   }
 }

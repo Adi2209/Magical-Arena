@@ -1,13 +1,16 @@
 export class Player {
-  private readonly health: number;
+  public health: number;
 
-  private readonly strength: number;
+  public readonly strength: number;
 
-  private readonly attack: number;
+  public readonly attack: number;
 
-  constructor(health: number, strength: number, attack: number) {
+  public readonly name:string
+
+  constructor(health: number, strength: number, attack: number,name:string) {
     this.health = health;
     this.strength = strength;
     this.attack = attack;
+    this.name = name;
   }
 }
