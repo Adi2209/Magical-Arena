@@ -12,6 +12,8 @@ export class DefendStrategy {
   }
 
   public defend(): number {
-    return this.die.roll() * this.player.strength;
+    const dieRoll = this.die.roll();
+    console.log(`${this.player.name} rolled the die and got: ${dieRoll}`);
+    return dieRoll* this.player.strength;
   }
 }
