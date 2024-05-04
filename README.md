@@ -23,3 +23,8 @@ To compile the TypeScript code and run the game, execute the following command:
 ```
 npm start
 ```
+## Run Testcases with coverage
+
+```
+npm run test:coverage
+```

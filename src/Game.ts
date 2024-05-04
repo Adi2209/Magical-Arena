@@ -4,10 +4,15 @@ import { DefendStrategy } from "./strategy/DefendStrategy";
 
 export class Game {
   private readonly playerA: Player;
+
   private readonly playerB: Player;
+
   private readonly attackStrategyA: AttackStrategy;
+
   private readonly attackStrategyB: AttackStrategy;
+
   private readonly defendStrategyA: DefendStrategy;
+
   private readonly defendStrategyB: DefendStrategy;
 
   constructor(
@@ -27,43 +32,58 @@ export class Game {
   }
 
   public startGame(): void {
-    console.log("Game started!");
+    try {
+      console.log("Game started!");
 
-    const firstAttacker = this.getFirstAttacker();
-    const secondAttacker = firstAttacker === this.playerA ? this.playerB : this.playerA;
+      const firstAttacker = this.getFirstAttacker();
+      const secondAttacker =
+        firstAttacker === this.playerA ? this.playerB : this.playerA;
 
-    while (this.playerA.health > 0 && this.playerB.health > 0) {
-      this.executeRound(firstAttacker, secondAttacker);
-      if (this.playerA.health <= 0 || this.playerB.health <= 0) break;
-      this.executeRound(secondAttacker, firstAttacker);
+      while (this.playerA.health > 0 && this.playerB.health > 0) {
+        this.executeRound(firstAttacker, secondAttacker);
+        if (this.playerA.health <= 0 || this.playerB.health <= 0) break;
+        this.executeRound(secondAttacker, firstAttacker);
+      }
+
+      console.log(`${this.getWinner()} wins!`);
+    } catch (error) {
+      console.log(`Failed to run the game due to error: ${error}`);
     }
-
-    console.log(`${this.getWinner()} wins!`);
   }
 
-  private executeRound(attacker: Player, defender: Player):void {
+  private executeRound(attacker: Player, defender: Player): void {
     console.log(`${attacker.name} is attacking ${defender.name}...`);
     const attackDamage = this.getAttackDamage(attacker);
+
     console.log(`${attacker.name}'s attack strength: ${attackDamage}`);
     const defendStrength = this.getDefendStrength(defender);
+
     console.log(`${defender.name}'s defense strength: ${defendStrength}`);
     const damageTaken = Math.max(attackDamage - defendStrength, 0);
-    defender.health -= damageTaken;
-    console.log(`${attacker.name} dealt ${damageTaken} damage to ${defender.name}.`);
-    console.log(`${defender.name}'s health reduced to ${defender.health}`);
-}
 
+    defender.health -= damageTaken;
+    console.log(
+      `${attacker.name} dealt ${damageTaken} damage to ${defender.name}.`
+    );
+    console.log(`${defender.name}'s health reduced to ${defender.health}`);
+  }
 
   private getFirstAttacker(): Player {
-    return this.playerA.health <= this.playerB.health ? this.playerA : this.playerB;
+    return this.playerA.health <= this.playerB.health
+      ? this.playerA
+      : this.playerB;
   }
 
   private getAttackDamage(attacker: Player): number {
-    return attacker === this.playerA ? this.attackStrategyA.attack() : this.attackStrategyB.attack();
+    return attacker === this.playerA
+      ? this.attackStrategyA.attack()
+      : this.attackStrategyB.attack();
   }
 
   private getDefendStrength(defender: Player): number {
-    return defender === this.playerA ? this.defendStrategyA.defend() : this.defendStrategyB.defend();
+    return defender === this.playerA
+      ? this.defendStrategyA.defend()
+      : this.defendStrategyB.defend();
   }
 
   private getWinner(): string {
