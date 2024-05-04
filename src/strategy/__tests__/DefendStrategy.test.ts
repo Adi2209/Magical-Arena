@@ -1,4 +1,4 @@
-import { Player } from "../../models/Player";
+import { Player } from "../../entities/Player";
 import { DefendStrategy } from "../DefendStrategy";
 
 describe("DefendStrategy", () => {

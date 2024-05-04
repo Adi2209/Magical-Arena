@@ -1,5 +1,5 @@
 import { Game } from "../Game";
-import { Player } from "../models/Player";
+import { Player } from "../entities/Player";
 import { AttackStrategy } from "../strategy/AttackStrategy";
 import { DefendStrategy } from "../strategy/DefendStrategy";
 
@@ -82,7 +82,9 @@ describe("Game", () => {
 
     game.startGame();
 
-    expect(consoleLogSpy).toHaveBeenCalledWith("Failed to run the game due to error: Error: Simulated error");
+    expect(consoleLogSpy).toHaveBeenCalledWith(
+      "Failed to run the game due to error: Error: Simulated error"
+    );
   });
 
   it("should execute a round of attack and defense", () => {
@@ -118,11 +120,9 @@ describe("Game", () => {
     (game as any).executeRound(playerA, playerB);
     expect((game as any).getWinner()).toEqual(playerA.name);
   });
-
-
 });
 
-describe('Tests without beforeAll', ()=>{
+describe("Tests without beforeAll", () => {
   it("should return the winner in break condition", () => {
     const player1 = new Player(10, 10, 10, "Player A");
     const player2 = new Player(5, 5, 50, "Player B");
@@ -159,4 +159,4 @@ describe('Tests without beforeAll', ()=>{
     game.startGame();
     expect((game as any).getWinner()).toEqual(player2.name);
   });
-})
+});

@@ -1,6 +1,5 @@
-import { Player } from "../models/Player";
+import { Player } from "../entities/Player";
 import { PlayerValidator } from "../PlayerValidator";
-
 
 describe("PlayerValidator", () => {
   describe("validate", () => {
@@ -9,7 +8,7 @@ describe("PlayerValidator", () => {
         health: 100,
         strength: 50,
         attack: 20,
-        name: "Valid Player"
+        name: "Valid Player",
       };
       expect(PlayerValidator.validate(validPlayer)).toBe(true);
     });
@@ -19,7 +18,7 @@ describe("PlayerValidator", () => {
         health: 0,
         strength: 50,
         attack: 20,
-        name: "Player with Zero Health"
+        name: "Player with Zero Health",
       };
       expect(PlayerValidator.validate(playerWithZeroHealth)).toBe(false);
     });
@@ -29,7 +28,7 @@ describe("PlayerValidator", () => {
         health: 100,
         strength: 0,
         attack: 20,
-        name: "Player with Zero Strength"
+        name: "Player with Zero Strength",
       };
       expect(PlayerValidator.validate(playerWithZeroStrength)).toBe(false);
     });
@@ -39,7 +38,7 @@ describe("PlayerValidator", () => {
         health: 100,
         strength: 50,
         attack: 0,
-        name: "Player with Zero Attack"
+        name: "Player with Zero Attack",
       };
       expect(PlayerValidator.validate(playerWithZeroAttack)).toBe(false);
     });
@@ -49,7 +48,7 @@ describe("PlayerValidator", () => {
         health: 100,
         strength: 50,
         attack: 20,
-        name: ""
+        name: "",
       };
       expect(PlayerValidator.validate(playerWithEmptyName)).toBe(false);
     });
@@ -59,7 +58,7 @@ describe("PlayerValidator", () => {
         health: 100,
         strength: 50,
         attack: 20,
-        name: "    "
+        name: "    ",
       };
       expect(PlayerValidator.validate(playerWithWhitespaceName)).toBe(false);
     });

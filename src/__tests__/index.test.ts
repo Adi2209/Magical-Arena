@@ -1,5 +1,5 @@
 import { Game } from "../Game";
-import { Player } from "../models/Player";
+import { Player } from "../entities/Player";
 import { AttackStrategy } from "../strategy/AttackStrategy";
 import { DefendStrategy } from "../strategy/DefendStrategy";
 
@@ -19,7 +19,14 @@ describe("Game", () => {
     attackStrategyB = new AttackStrategy(playerB);
     defendStrategyA = new DefendStrategy(playerA);
     defendStrategyB = new DefendStrategy(playerB);
-    game = new Game(playerA, attackStrategyA, defendStrategyA, playerB, attackStrategyB, defendStrategyB);
+    game = new Game(
+      playerA,
+      attackStrategyA,
+      defendStrategyA,
+      playerB,
+      attackStrategyB,
+      defendStrategyB
+    );
   });
 
   it("should simulate the game and declare a winner", () => {
@@ -27,20 +34,29 @@ describe("Game", () => {
 
     game.startGame();
 
-    expect(consoleLogSpy).toHaveBeenCalledWith(expect.stringContaining("Game started!"));
+    expect(consoleLogSpy).toHaveBeenCalledWith(
+      expect.stringContaining("Game started!")
+    );
   });
   describe("Game Object Construction", () => {
     it("should create a Game object with provided parameters", () => {
       const playerA = new Player(40, 10, 10, "Player A");
       const playerB = new Player(50, 10, 10, "Player B");
-  
+
       const attackStrategyA = new AttackStrategy(playerA);
       const attackStrategyB = new AttackStrategy(playerB);
       const defendStrategyA = new DefendStrategy(playerA);
       const defendStrategyB = new DefendStrategy(playerB);
-  
-      const game = new Game(playerA, attackStrategyA, defendStrategyA, playerB, attackStrategyB, defendStrategyB);
-  
+
+      const game = new Game(
+        playerA,
+        attackStrategyA,
+        defendStrategyA,
+        playerB,
+        attackStrategyB,
+        defendStrategyB
+      );
+
       expect(game).toBeDefined();
       expect(game instanceof Game).toBeTruthy();
       expect(game["playerA"]).toEqual(playerA);
