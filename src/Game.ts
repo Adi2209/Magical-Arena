@@ -44,12 +44,15 @@ export class Game {
   private executeRound(attacker: Player, defender: Player):void {
     console.log(`${attacker.name} is attacking ${defender.name}...`);
     const attackDamage = this.getAttackDamage(attacker);
+    console.log(`${attacker.name}'s attack strength: ${attackDamage}`);
     const defendStrength = this.getDefendStrength(defender);
+    console.log(`${defender.name}'s defense strength: ${defendStrength}`);
     const damageTaken = Math.max(attackDamage - defendStrength, 0);
     defender.health -= damageTaken;
-    console.log(`${attacker.name} dealt ${attackDamage} damage to ${defender.name}.`);
+    console.log(`${attacker.name} dealt ${damageTaken} damage to ${defender.name}.`);
     console.log(`${defender.name}'s health reduced to ${defender.health}`);
-  }
+}
+
 
   private getFirstAttacker(): Player {
     return this.playerA.health <= this.playerB.health ? this.playerA : this.playerB;

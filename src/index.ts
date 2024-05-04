@@ -2,9 +2,9 @@ import { Player } from "./models/Player";
 import { AttackStrategy } from "./strategy/AttackStrategy";
 import { DefendStrategy } from "./strategy/DefendStrategy";
 import { Game } from "./Game";
-
-const playerA = new Player(40, 5, 10, "Player A");
-const playerB = new Player(50, 10, 5, "Player B");
+// health strength attack name
+const playerA = new Player(40, 10, 10, "Player A");
+const playerB = new Player(50, 10, 10, "Player B");
 
 const attackStrategyA = new AttackStrategy(playerA);
 const attackStrategyB = new AttackStrategy(playerB);
