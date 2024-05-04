@@ -26,7 +26,7 @@ export class Game {
     this.defendStrategyB = defendStrategyB;
   }
 
-  startGame() {
+  public startGame(): void {
     console.log("Game started!");
 
     const firstAttacker = this.getFirstAttacker();
@@ -41,7 +41,7 @@ export class Game {
     console.log(`${this.getWinner()} wins!`);
   }
 
-  private executeRound(attacker: Player, defender: Player) {
+  private executeRound(attacker: Player, defender: Player):void {
     console.log(`${attacker.name} is attacking ${defender.name}...`);
     const attackDamage = this.getAttackDamage(attacker);
     const defendStrength = this.getDefendStrength(defender);
